@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import background from '../lck.jpeg';
 const Playerinf = () => {
     const [playernickname, setplayernickname] = useState('');
     const [playername, setplayername] = useState('');
@@ -72,13 +73,22 @@ const Playerinf = () => {
     useEffect(() => {
       showplayer()
     },[]);
+    const styled ={
+      back:{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat:"no-repeat",
+        backgroundSize:'cover',
+        
+      }
+    }
     return (
-        <div >
+      <div style = {styled.back} >
+        <div style={{color:'white'}}>
           <div style = {{display : 'flex'}}>
           <div style={{margin : 30}}>
-            <h1> 선수 등록</h1>
+            <h1 style={{color:'white'}}> 선수 등록</h1>
       <form>
-              <div className="first_input">
+              <div className="first_input" style={{color:'white'}}>
                   <span>선수 닉네임</span>
                   <input
                     name="nickname"
@@ -127,18 +137,19 @@ const Playerinf = () => {
       </div>
       </div>
       <h1>선수 정보 </h1>
-      <TableContainer component={Paper}>
+      <div style = {{margin : 30}}>
+      <TableContainer component={Paper}  >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell align="center">Nickname</TableCell>
-            <TableCell align="center">Realname</TableCell>
-            <TableCell align="center">Position</TableCell>
+            <TableCell align="center" >Realname</TableCell>
+            <TableCell align="center" >Position</TableCell>
             <TableCell align="center">Teamname</TableCell>
             <TableCell align="center">Kill</TableCell>
             <TableCell align="center">Death</TableCell>
             <TableCell align="center">Assist</TableCell>
-            <TableCell align="center">K/D/A</TableCell>
+            <TableCell align="center" >K/D/A</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -146,14 +157,14 @@ const Playerinf = () => {
             <TableRow
               key={row.nickname}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell align="center">{row.nickname}</TableCell>
-              <TableCell align="center">{row.realname}</TableCell>
+              <TableCell align="center" >{row.nickname}</TableCell>
+              <TableCell align="center" >{row.realname}</TableCell>
               <TableCell align="center">{row.position}</TableCell>
               <TableCell align="center">{row.myteam}</TableCell>
               <TableCell align="center">{row.kills}</TableCell>
               <TableCell align="center">{row.deaths}</TableCell>
-              <TableCell align="center">{row.assists}</TableCell>
-              <TableCell align="center">{(String((row.kills + row.assists) /row.deaths)).substr(0,3)}</TableCell>
+              <TableCell align="center" >{row.assists}</TableCell>
+              <TableCell align="center" >{(String((row.kills + row.assists) /row.deaths)).substr(0,3)}</TableCell>
 
 
             </TableRow>
@@ -161,6 +172,8 @@ const Playerinf = () => {
         </TableBody>
         </Table>
     </TableContainer>
+    </div>
+    </div>
     </div>
     )
 }

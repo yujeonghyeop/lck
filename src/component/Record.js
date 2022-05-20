@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import background from '../lck.jpeg';
 const Record = () => {
     const [matchid, setmatchid] = useState('');
     const [winteam, setwinteam] = useState('');
@@ -147,10 +148,18 @@ const Record = () => {
             showrecord()
             showcalendernotrecord()
         },[]);
+
+        const styled ={
+          back:{
+            backgroundImage: `url(${background})`,
+            backgroundRepeat:"no-repeat",
+            backgroundSize:'cover',
+          }
+        }
     return (
-        <div>
+        <div style = {styled.back}>
         <div style = {{display : 'flex'}}>
-          <div style={{margin : 30}}>
+          <div style={{margin : 30,color:'white'}}>
             <h1> 결과 등록</h1>
       <form>
               <div className="first_input">
@@ -211,7 +220,7 @@ const Record = () => {
                 <button type = 'button' style = {{float :'center'}} onClick = {recordform} >등록</button>
               </form>
     </div>
-    <div style={{margin : 30}}>
+    <div style={{margin : 30,color:'white'}}>
             <h1> KDA 등록</h1>
       <form>
               <div className="first_input">
@@ -272,7 +281,7 @@ const Record = () => {
                 <button type = 'button' style = {{float :'center'}} onClick = {kdaform} >등록</button>
               </form>
     </div>
-    <div style={{margin : 30}}>
+    <div style={{margin : 30,color:'white'}}>
             <h1> 상세 경기 결과 조회</h1>
       <form>
               <div className="first_input">
@@ -308,16 +317,17 @@ const Record = () => {
     </div>
     </div>
     <div style = {{display : 'flex'}} >
-    <TableContainer component={Paper}>
-    <h1 align ="left">{team1}</h1>
-    <h1 align ="center">{team1kill}</h1>
+ 
+    <h1 align ="left" style = {{color:'white'}}>{team1}</h1>
+    <h1 align ="center" style = {{color:'white'}}>{team1kill}</h1>
+    <TableContainer>
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell component="th" scope="row" width="20%"align="center">Nickname</TableCell>
-            <TableCell align="center">Kill</TableCell>
-            <TableCell align="center">Death</TableCell>
-            <TableCell align="center">Assist</TableCell>
+            <TableCell component="th" scope="row" width="20%"align="center" style = {{color:'white'}}>Nickname</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Kill</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Death</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Assist</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -325,17 +335,15 @@ const Record = () => {
             <TableRow
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row" align="center">{row.nickname}</TableCell>
-              <TableCell align="center">{row.k}</TableCell>
-              <TableCell align="center">{row.d}</TableCell>
-              <TableCell align="center">{row.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{row.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{row.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{row.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{row.a}</TableCell>
             </TableRow>
           ))}
         </TableBody>   
         </Table>
-      <h1>Kill score</h1>
-    </TableContainer>
-    <TableContainer component={Paper}>
+        </TableContainer>
       <div>
     <h1 align ="right">{team2}</h1>
     <h1 align ="center">{team2kill}</h1>
@@ -343,10 +351,10 @@ const Record = () => {
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell component="th" scope="row" width="20%"align="center">Kill</TableCell>
-            <TableCell align="center">Death</TableCell>
-            <TableCell align="center">Assist</TableCell>
-            <TableCell align="center">Nickname</TableCell>
+            <TableCell component="th" scope="row" width="20%"align="center" style = {{color:'white'}}>Kill</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Death</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Assist</TableCell>
+            <TableCell align="center" style = {{color:'white'}}>Nickname</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -362,18 +370,18 @@ const Record = () => {
           ))}
         </TableBody>   
         </Table>
-    </TableContainer>
+
     </div>
-    <h1>경기 결과 </h1>
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <h1 style = {{color:'white'}}>경기 결과 </h1>
+    <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell component="th" scope="row" width="20%"align="center">Match_day</TableCell>
-            <TableCell align="right">team1</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="left"></TableCell>
-            <TableCell align="left">team2</TableCell>
+            <TableCell align="right" >team1</TableCell>
+            <TableCell align="right" ></TableCell>
+            <TableCell align="left" ></TableCell>
+            <TableCell align="left" >team2</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -381,11 +389,11 @@ const Record = () => {
             <TableRow
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row" align="center">{row.match_day.substr(0,10)}</TableCell>
-              <TableCell align="right">{row.winteam}</TableCell>
-              <TableCell align="right">{row.winteam_winset}</TableCell>
-              <TableCell align="left">{row.winteam_loseset}</TableCell>
-              <TableCell align="left">{row.loseteam}</TableCell>
+              <TableCell component="th" scope="row" align="center" >{row.match_day.substr(0,10)}</TableCell>
+              <TableCell align="right" >{row.winteam}</TableCell>
+              <TableCell align="right" >{row.winteam_winset}</TableCell>
+              <TableCell align="left" >{row.winteam_loseset}</TableCell>
+              <TableCell align="left" >{row.loseteam}</TableCell>
             </TableRow>
           ))}
         {notrecordlist.map((row) => (
@@ -401,7 +409,7 @@ const Record = () => {
           ))}
         </TableBody>
         </Table>
-    </TableContainer>
+  </TableContainer>
     </div>
     )
 }

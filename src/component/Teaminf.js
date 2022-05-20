@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import background from '../lck.jpeg';
+
 import { Alert } from '@mui/material';
 function Teaminf() {
   let i = 0
@@ -88,10 +90,17 @@ function Teaminf() {
     const response = await axios.post("http://localhost:5000/api/teamcreate",{teamname:teamname, coach:coach});
     showtable()
   }
+  const styled ={
+    back:{
+      backgroundImage: `url(${background})`,
+      backgroundRepeat:"no-repeat",
+      backgroundSize:'cover',
+    }
+  }
   return (
-    <div>
+    <div style ={styled.back}>
       <div style = {{display : 'flex'}}>
-      <div style = {{margin : 30}}>
+      <div style = {{margin : 30, color :'white'}}>
       <h1> 팀 등록</h1>
       <form>
               <div className="first_input">
@@ -118,7 +127,7 @@ function Teaminf() {
               </form>
     
     </div>
-    <div style = {{margin : 30}}>
+    <div style = {{margin : 30, color :'white'}}>
         <h1>팀 삭제</h1>
         <form id='form1'>
           <input type='text' value={deleteid} onChange={appChange1} placeholder = "팀 이름을 입력하세요"/>
@@ -126,7 +135,7 @@ function Teaminf() {
       </form>
       </div>
       </div>
-    <div style = {{margin : 30}}>
+    <div style = {{margin : 30, color :'white'}}>
       <h1>팀 조회</h1>
       <form id='form'>
         <input type='text' value={myid} onChange={appChange} placeholder = "팀 이름을 입력하세요"/>
@@ -162,7 +171,7 @@ function Teaminf() {
       </div>
       </div>
 <div style = {{margin : 30}}>
-      <h1> 팀 순위</h1>
+      <h1 style ={{color:'white'}}> 팀 순위</h1>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
