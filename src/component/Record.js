@@ -96,6 +96,8 @@ const Record = () => {
       const createkda = async() => {
         const response = await axios.post("http://localhost:5000/api/createkda",{match_id:matchid, nickname:nickname,kill:kill, death:death, assist:assist,team : team});
         const response1 = await axios.post("http://localhost:5000/api/createplayerkda",{match_id:matchid, nickname:nickname,kill:kill, death:death, assist:assist});
+        const response2 = await axios.post("http://localhost:5000/api/gamecnt",{nickname:nickname});
+
       }
       const searchresult = async() => {
         const response = await axios.post("http://localhost:5000/api/searchresult1",{match_id:matchid, team1:team1});

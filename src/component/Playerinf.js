@@ -66,7 +66,9 @@ const Playerinf = () => {
         myteam : rowData.myteam,
         kills : rowData.kills,
         deaths : rowData.deaths,
-        assists : rowData.assists
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
       }))
       setplayerlist(inputdata)
     }
@@ -149,6 +151,8 @@ const Playerinf = () => {
             <TableCell align="center">Kill</TableCell>
             <TableCell align="center">Death</TableCell>
             <TableCell align="center">Assist</TableCell>
+            <TableCell align="center">game</TableCell>
+            <TableCell align="center">MVP</TableCell>
             <TableCell align="center" >K/D/A</TableCell>
           </TableRow>
         </TableHead>
@@ -164,6 +168,8 @@ const Playerinf = () => {
               <TableCell align="center">{row.kills}</TableCell>
               <TableCell align="center">{row.deaths}</TableCell>
               <TableCell align="center" >{row.assists}</TableCell>
+              <TableCell align="center">{row.game_cnt}</TableCell>
+              <TableCell align="center" >{row.mvp_cnt}</TableCell>
               <TableCell align="center" >{(String((row.kills + row.assists) /row.deaths)).substr(0,3)}</TableCell>
 
 
