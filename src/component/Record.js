@@ -29,6 +29,19 @@ const Record = () => {
     const [team1kill, setteam1kill] = useState('');
     const [team2kill, setteam2kill] = useState('');
 
+    const [team1top, setteam1top] = useState([]);
+    const [team1jungle, setteam1jungle] = useState([]);
+    const [team1mid, setteam1mid] = useState([]);
+    const [team1ad, setteam1ad] = useState([]);
+    const [team1spt, setteam1spt] = useState([]);
+
+    const [team2top, setteam2top] = useState([]);
+    const [team2jungle, setteam2jungle] = useState([]);
+    const [team2mid, setteam2mid] = useState([]);
+    const [team2ad, setteam2ad] = useState([]);
+    const [team2spt, setteam2spt] = useState([]);
+
+
     var cntteam1kill = 0;
     var cntteam2kill = 0;
     const matchidchange = (e) => {
@@ -64,12 +77,12 @@ const Record = () => {
       const assistchange = (e) =>{
         setassist(e.target.value);
       }
-      const team1change = (e) => {
-        setteam1(e.target.value);
-      }
-      const team2change = (e) =>{
-        setteam2(e.target.value);
-      }
+      // const team1change = (e) => {
+      //   setteam1(e.target.value);
+      // }
+      // const team2change = (e) =>{
+      //   setteam2(e.target.value);
+      // }
       const recordform = (e) =>{
         e.preventDefault();
         createrecord()
@@ -78,9 +91,13 @@ const Record = () => {
         e.preventDefault();
         createkda()
       }
-      const searchform = (e) =>{
+      // const searchform = (e) =>{
+      //   e.preventDefault();
+      //   searchresult()
+      // }
+      const searchmatchidform = (e) =>{
         e.preventDefault();
-        searchresult()
+        searchmatchid()
       }
       const createrecord = async() => {
         const response = await axios.post("http://localhost:5000/api/createrecord",{match_id:matchid, winteam:winteam,loseteam:loseteam, mvp:mvp, winset:winset, loseset:loseset});
@@ -99,31 +116,76 @@ const Record = () => {
         const response2 = await axios.post("http://localhost:5000/api/gamecnt",{nickname:nickname});
 
       }
-      const searchresult = async() => {
-        const response = await axios.post("http://localhost:5000/api/searchresult1",{match_id:matchid, team1:team1});
-        const response1 = await axios.post("http://localhost:5000/api/searchresult2",{match_id:matchid, team2:team2});
+      const searchmatchid = async() =>{
+        const response = await axios.post("http://localhost:5000/api/searchresultmatchid",{match_id:matchid});
         const inputdata = await response.data.map((rowData)=>({
+          myteam : rowData.myteam,
+          position : rowData.position,
           nickname : rowData.nickname,
           k : rowData.k,
           d : rowData.d,
           a : rowData.a,
         }))
-        const inputdata1 = await response1.data.map((rowData)=>({
-          nickname : rowData.nickname,
-          k : rowData.k,
-          d : rowData.d,
-          a : rowData.a,
-        }))
-        setteam1detail(inputdata)
-        setteam2detail(inputdata1)
-        for(var i = 0; i<5; i++){
-          cntteam1kill += team1detail[i]['k'];
-          cntteam2kill += team1detail[i]['d'];
-          console.log(team1detail[i])
+        for(let i=0; i<5; i++){
+          if(inputdata[i]['position'] === 'TOP' || inputdata[i]['position'] === '\bTOP'){
+            setteam1top(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'JUNGLE' || inputdata[i]['position'] === '\bJUNGLE'){
+            setteam1jungle(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'MID' || inputdata[i]['position'] === '\bMID'){
+            setteam1mid(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'AD'|| inputdata[i]['position'] === '\bAD'){
+            setteam1ad(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'SPT' || inputdata[i]['position'] === '\bSPT'){
+            setteam1spt(inputdata[i])
+          }
         }
-        setteam1kill(cntteam1kill)
-        setteam2kill(cntteam2kill)
+        for(let i=5; i<10; i++){
+          if(inputdata[i]['position'] === 'TOP' || inputdata[i]['position'] === '\bTOP'){
+            setteam2top(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'JUNGLE' || inputdata[i]['position'] === '\bJUNGLE'){
+            setteam2jungle(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'MID' || inputdata[i]['position'] === '\bMID'){
+            setteam2mid(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'AD' || inputdata[i]['position'] === '\bAD'){
+            setteam2ad(inputdata[i])
+          }
+          else if (inputdata[i]['position'] === 'SPT'|| inputdata[i]['position'] === '\bSPT'){
+            setteam2spt(inputdata[i])
+          }
+        }
       }
+      // const searchresult = async() => {
+      //   const response = await axios.post("http://localhost:5000/api/searchresult1",{match_id:matchid, team1:team1});
+      //   const response1 = await axios.post("http://localhost:5000/api/searchresult2",{match_id:matchid, team2:team2});
+      //   const inputdata = await response.data.map((rowData)=>({
+      //     nickname : rowData.nickname,
+      //     k : rowData.k,
+      //     d : rowData.d,
+      //     a : rowData.a,
+      //   }))
+      //   const inputdata1 = await response1.data.map((rowData)=>({
+      //     nickname : rowData.nickname,
+      //     k : rowData.k,
+      //     d : rowData.d,
+      //     a : rowData.a,
+      //   }))
+      //   setteam1detail(inputdata)
+      //   setteam2detail(inputdata1)
+      //   for(var i = 0; i<5; i++){
+      //     cntteam1kill += team1detail[i]['k'];
+      //     cntteam2kill += team1detail[i]['d'];
+      //     console.log(team1detail[i])
+      //   }
+      //   setteam1kill(cntteam1kill)
+      //   setteam2kill(cntteam2kill)
+      // }
       const showrecord = async() =>{
         const response = await axios.get("http://localhost:5000/api/showrecord");
         const inputdata = await response.data.map((rowData)=>({
@@ -283,7 +345,7 @@ const Record = () => {
                 <button type = 'button' style = {{float :'center'}} onClick = {kdaform} >등록</button>
               </form>
     </div>
-    <div style={{margin : 30,color:'white'}}>
+    {/* <div style={{margin : 30,color:'white'}}>
             <h1> 상세 경기 결과 조회</h1>
       <form>
               <div className="first_input">
@@ -314,14 +376,30 @@ const Record = () => {
                       onChange={team2change}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {searchform} >등록</button>
+                <button type = 'button' style = {{float :'center'}} onClick = {searchform} >조회</button>
+              </form>
+    </div> */}
+    <div style={{margin : 30,color:'white'}}>
+            <h1> 상세 경기 결과 조회</h1>
+      <form>
+              <div className="first_input">
+                  <span>Match_ID</span>
+                  <input
+                    name="match_id"
+                    placeholder="매치 번호"
+                    style = {{float :'right'},{marginBottom:10}}
+                    onChange={matchidchange}
+                  ></input>
+                </div>
+                <button type = 'button' style = {{float :'center'}} onClick = {searchmatchidform} >조회</button>
               </form>
     </div>
     </div>
+
+
     <div style = {{display : 'flex'}} >
  
     <h1 align ="left" style = {{color:'white'}}>{team1}</h1>
-    <h1 align ="center" style = {{color:'white'}}>{team1kill}</h1>
     <TableContainer>
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
@@ -333,22 +411,45 @@ const Record = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {team1detail.map((row) => (
             <TableRow
-              key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{row.nickname}</TableCell>
-              <TableCell align="center" style = {{color:'white'}}>{row.k}</TableCell>
-              <TableCell align="center" style = {{color:'white'}}>{row.d}</TableCell>
-              <TableCell align="center" style = {{color:'white'}}>{row.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team1top.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1top.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1top.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1top.a}</TableCell>
             </TableRow>
-          ))}
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team1jungle.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1jungle.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1jungle.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1jungle.a}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team1mid.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1mid.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1mid.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1mid.a}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team1ad.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1ad.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1ad.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1ad.a}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team1spt.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1spt.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1spt.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team1spt.a}</TableCell>
+            </TableRow>
         </TableBody>   
         </Table>
         </TableContainer>
       <div>
-    <h1 align ="right">{team2}</h1>
-    <h1 align ="center">{team2kill}</h1>
     </div>
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
@@ -360,19 +461,44 @@ const Record = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {team2detail.map((row) => (
             <TableRow
-              key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell align="center">{row.k}</TableCell>
-              <TableCell align="center">{row.d}</TableCell>
-              <TableCell align="center">{row.a}</TableCell>
-              <TableCell component="th" scope="row" align="center">{row.nickname}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2top.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2top.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2top.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team2top.nickname}</TableCell>
             </TableRow>
-          ))}
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell align="center" style = {{color:'white'}}>{team2jungle.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2jungle.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2jungle.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team2jungle.nickname}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell align="center" style = {{color:'white'}}>{team2mid.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2mid.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2mid.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team2mid.nickname}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell align="center" style = {{color:'white'}}>{team2ad.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2ad.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2ad.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team2ad.nickname}</TableCell>
+            </TableRow>
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell align="center" style = {{color:'white'}}>{team2spt.k}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2spt.d}</TableCell>
+              <TableCell align="center" style = {{color:'white'}}>{team2spt.a}</TableCell>
+              <TableCell component="th" scope="row" align="center" style = {{color:'white'}}>{team2spt.nickname}</TableCell>
+            </TableRow>
         </TableBody>   
         </Table>
-
+        <h1 align ="right" style = {{color:'white'}}>{team2}</h1>
     </div>
     <h1 style = {{color:'white'}}>경기 결과 </h1>
     <TableContainer component={Paper}>
