@@ -17,10 +17,15 @@ const Playerinf = () => {
     const [error, setError] = useState(0);
     const [deletenickname, setDeletenickname] = useState('');
     const [playerlist, setplayerlist] = useState([])
+    const [oneplayer, setoneplayer] = useState([]);
+    const [oneplayernickname, setoneplayernickname] = useState('');
 
     const playernicknamechange = (e) =>{
         setplayernickname(e.target.value);
       }
+    const oneplayernicknamechange = (e) =>{
+      setoneplayernickname(e.target.value);
+    }
     const playernamechange = (e) =>{
         setplayername(e.target.value);
     }
@@ -46,7 +51,141 @@ const Playerinf = () => {
     const deletebutton = () => {
       deleteplayer();
     }
-
+    const nameasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/nameasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const positionasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/positionasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const teamnameasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/teamnameasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const killasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/killasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const deathasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/deathasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const assistasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/assistasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const gameasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/gameasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const mvpasc = async() =>{
+      const response = await axios.get("http://localhost:5000/api/mvpasc");
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setplayerlist(inputdata)
+    }
+    const showoneplayer = async() =>{
+      const response = await axios.get("http://localhost:5000/api/showplayer",{params:{nickname:oneplayernickname}});
+      const inputdata = await response.data.map((rowData)=>({
+        nickname : rowData.nickname,
+        realname : rowData.realname,
+        position : rowData.position,
+        myteam : rowData.myteam,
+        kills : rowData.kills,
+        deaths : rowData.deaths,
+        assists : rowData.assists,
+        game_cnt : rowData.game_cnt,
+        mvp_cnt :rowData.mvp_cnt
+      }))
+      setoneplayer(inputdata)
+    }
     const createplayer = async() => {   //선수 등록 함수
         const response = await axios.post("http://localhost:5000/api/playercreate",{nickname:playernickname, realname:playername,position:playerposition, myteam:playerteam});
         setError(response.headers['content-length'])
@@ -138,13 +277,18 @@ const Playerinf = () => {
       </form>
       </div>
       </div>
-      <h1>선수 정보 </h1>
-      <div style = {{margin : 30}}>
-      <TableContainer component={Paper}  >
+      <div style = {{margin : 30, color :'white'}}>
+      <h1>선수 조회</h1>
+      <form id='form'>
+        <input type='text' value={oneplayernickname} onChange={oneplayernicknamechange} placeholder = "선수 닉네임을 입력하세요"/>
+        <button type='button' onClick={showoneplayer}>조회</button>
+      </form>
+      <div >
+      <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow >
-            <TableCell align="center">Nickname</TableCell>
+          <TableRow>
+            <TableCell align="center" >Nickname</TableCell>
             <TableCell align="center" >Realname</TableCell>
             <TableCell align="center" >Position</TableCell>
             <TableCell align="center">Teamname</TableCell>
@@ -153,6 +297,47 @@ const Playerinf = () => {
             <TableCell align="center">Assist</TableCell>
             <TableCell align="center">game</TableCell>
             <TableCell align="center">MVP</TableCell>
+            <TableCell align="center" >K/D/A</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {oneplayer.map((row) => (
+            <TableRow
+              key={row.nickname}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell align="center" >{row.nickname}</TableCell>
+              <TableCell align="center" >{row.realname}</TableCell>
+              <TableCell align="center">{row.position}</TableCell>
+              <TableCell align="center">{row.myteam}</TableCell>
+              <TableCell align="center">{row.kills}</TableCell>
+              <TableCell align="center">{row.deaths}</TableCell>
+              <TableCell align="center" >{row.assists}</TableCell>
+              <TableCell align="center">{row.game_cnt}</TableCell>
+              <TableCell align="center" >{row.mvp_cnt}</TableCell>
+              <TableCell align="center" >{(String((row.kills + row.assists) /row.deaths)).substr(0,3)}</TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+        </Table>
+    </TableContainer>
+      </div>
+      </div>
+      <h1>선수 정보 </h1>
+      <div style = {{margin : 30}}>
+      <TableContainer component={Paper}  >
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow >
+            <TableCell align="center" >Nickname<button type = 'button' onClick ={showplayer}>⇩</button></TableCell>
+            <TableCell align="center" >Realname<button type = 'button' onClick ={nameasc}>⇩</button></TableCell>
+            <TableCell align="center" >Position<button type = 'button' onClick ={positionasc}>⇩</button></TableCell>
+            <TableCell align="center">Teamname<button type = 'button' onClick ={teamnameasc}>⇩</button></TableCell>
+            <TableCell align="center">Kill<button type = 'button' onClick ={killasc}>⇩</button></TableCell>
+            <TableCell align="center">Death<button type = 'button' onClick ={deathasc}>⇩</button></TableCell>
+            <TableCell align="center">Assist<button type = 'button' onClick ={assistasc}>⇩</button></TableCell>
+            <TableCell align="center">game<button type = 'button' onClick ={gameasc}>⇩</button></TableCell>
+            <TableCell align="center">MVP<button type = 'button' onClick ={mvpasc}>⇩</button></TableCell>
             <TableCell align="center" >K/D/A</TableCell>
           </TableRow>
         </TableHead>

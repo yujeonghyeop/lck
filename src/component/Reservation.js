@@ -78,6 +78,7 @@ const Reservation = () => {
       }
       const userdelete = async() => {
         const response = await axios.delete("http://localhost:5000/api/userdelete",{params:{user_id:userid}});
+
       }
       const createticket = async() => {
         const response = await axios.post("http://localhost:5000/api/createticket",{user_id:userid, match_id:matchid,seat_grade:seat, pay_method:paymethod,pay_option:payoption });
@@ -101,6 +102,11 @@ const Reservation = () => {
             pay_option : rowData.pay_option
           }))
           setticketinf(inputdata);
+      }
+      const ticketdelete = async() => {
+        const response = await axios.delete("http://localhost:5000/api/ticketdelete",{params:{user_id:userid, match_id:matchid}});
+        const response1 = await axios.post("http://localhost:5000/api/ticketminus",{user_id:userid});
+
       }
       const styled ={
         back:{
@@ -220,7 +226,7 @@ const Reservation = () => {
             <h1>티켓 예약</h1>
       <form>
               <div className="first_input">
-                  <span>User_ID</span>
+                  <span>User_id</span>
                   <input
                     name="user_id"
                     placeholder="User ID"
@@ -272,7 +278,7 @@ const Reservation = () => {
             <h1>티켓 조회</h1>
       <form>
               <div className="first_input">
-                  <span>ID</span>
+                  <span>User_id</span>
                   <input
                     name="user_id"
                     placeholder="ID"
@@ -282,10 +288,10 @@ const Reservation = () => {
                 </div>
                 <button type = 'button' style = {{float :'center'}} onClick = {ticketshow} >조회</button>
               </form>
-              <h1>회원 삭제</h1>
+              <h1>예매 취소</h1>
       <form>
               <div className="first_input">
-                  <span>ID</span>
+                  <span>User_id</span>
                   <input
                     name="user_id"
                     placeholder="ID"
@@ -293,7 +299,16 @@ const Reservation = () => {
                     onChange={useridchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {userdelete} >삭제</button>
+                <div className="first_input">
+                  <span>Match_id</span>
+                  <input
+                    name="user_id"
+                    placeholder="ID"
+                    style = {{float :'right'},{marginBottom:10}}
+                    onChange={mathidchange}
+                  ></input>
+                </div>
+                <button type = 'button' style = {{float :'center'}} onClick = {ticketdelete} >삭제</button>
               </form>
     </div><div>
     <TableContainer component={Paper}  >
