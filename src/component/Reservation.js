@@ -93,7 +93,7 @@ const Reservation = () => {
 
     }
     const showticket = async() => {
-        const response = await axios.get("http://localhost:5000/api/showticket",{params:{user_id:userid}});
+        const response = await axios.get("http://localhost:5000/api/showticket",{params:{user_id:userid, match_id:matchid}});
         const inputdata = await response.data.map((rowData)=>({
             user_id : rowData.user_id,
             match_id : rowData.match_id,
@@ -286,6 +286,15 @@ const Reservation = () => {
                     onChange={useridchange}
                   ></input>
                 </div>
+                <div className="first_input">
+                  <span>Match_id</span>
+                  <input
+                    name="user_id"
+                    placeholder="ID"
+                    style = {{float :'right'},{marginBottom:10}}
+                    onChange={mathidchange}
+                  ></input>
+                </div>
                 <button type = 'button' style = {{float :'center'}} onClick = {ticketshow} >조회</button>
               </form>
               <h1>예매 취소</h1>
@@ -326,7 +335,7 @@ const Reservation = () => {
         <TableBody>
         {ticketinf.map((row) => (
             <TableRow
-              key={row.user_id}
+              key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell align="center">{row.user_id}</TableCell>
               <TableCell align="center">{row.match_id}</TableCell>
