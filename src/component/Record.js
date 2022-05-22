@@ -128,6 +128,7 @@ const Record = () => {
         }))
         for(let i=0; i<5; i++){
           if(inputdata[i]['position'] === 'TOP' || inputdata[i]['position'] === '\bTOP'){
+            setteam1(inputdata[i]['myteam'])
             setteam1top(inputdata[i])
           }
           else if (inputdata[i]['position'] === 'JUNGLE' || inputdata[i]['position'] === '\bJUNGLE'){
@@ -145,6 +146,7 @@ const Record = () => {
         }
         for(let i=5; i<10; i++){
           if(inputdata[i]['position'] === 'TOP' || inputdata[i]['position'] === '\bTOP'){
+            setteam2(inputdata[i]['myteam'])
             setteam2top(inputdata[i])
           }
           else if (inputdata[i]['position'] === 'JUNGLE' || inputdata[i]['position'] === '\bJUNGLE'){
@@ -395,11 +397,11 @@ const Record = () => {
               </form>
     </div>
     </div>
-
-
+<div style = {{display:'flex'}}>
+    <h1 align ="left" style = {{color:'white',margin:10, flex :1}}>{team1}</h1>
+    <h1 align ="right" style = {{color:'white',margin:10,flex :1}}>{team2}</h1>
+    </div>
     <div style = {{display : 'flex'}} >
- 
-    <h1 align ="left" style = {{color:'white'}}>{team1}</h1>
     <TableContainer>
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
@@ -451,6 +453,7 @@ const Record = () => {
         </TableContainer>
       <div>
     </div>
+    
       <Table sx={{ maxWidth: 600 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -498,14 +501,14 @@ const Record = () => {
             </TableRow>
         </TableBody>   
         </Table>
-        <h1 align ="right" style = {{color:'white'}}>{team2}</h1>
     </div>
     <h1 style = {{color:'white'}}>경기 결과 </h1>
     <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell component="th" scope="row" width="20%"align="center">Match_day</TableCell>
+          <TableCell component="th" scope="row" width="10%"align="center">Match_id</TableCell>
+            <TableCell component="th" scope="row" width="10%"align="center">Match_day</TableCell>
             <TableCell align="right" >team1</TableCell>
             <TableCell align="right" ></TableCell>
             <TableCell align="left" ></TableCell>
@@ -517,6 +520,7 @@ const Record = () => {
             <TableRow
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row" align="center" >{row.match_id}</TableCell>
               <TableCell component="th" scope="row" align="center" >{row.match_day.substr(0,10)}</TableCell>
               <TableCell align="right" >{row.winteam}</TableCell>
               <TableCell align="right" >{row.winteam_winset}</TableCell>
@@ -528,6 +532,7 @@ const Record = () => {
             <TableRow
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row" align="center" >{row.match_id}</TableCell>
               <TableCell component="th" scope="row" align="center">{row.match_day.substr(0,10)}</TableCell>
               <TableCell align="right">{row.team1}</TableCell>
               <TableCell align="right"></TableCell>
