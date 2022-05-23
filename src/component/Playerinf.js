@@ -38,13 +38,11 @@ const Playerinf = () => {
     const playerform = (e) =>{
         e.preventDefault();
         createplayer()
-      //   if (error===0){
-      //       alert("등록되지 않은 팀입니다")
-      //   }
-      //   else{
-      //   alert("선수 등록이 완료되었습니다")
-      // }
     }
+    const playerchangeform = (e) =>{
+      e.preventDefault();
+      changeplayer()
+  }
     const deletechange = (e) => {
       setDeletenickname(e.target.value);
     }
@@ -191,6 +189,13 @@ const Playerinf = () => {
         setError(response.headers['content-length'])
         showplayer();
       }
+      const changeplayer = async() => {   //선수 등록 함수
+        const response = await axios.post("http://localhost:5000/api/changenickname",{nickname:playernickname,realname:playername});
+        const response1 = await axios.post("http://localhost:5000/api/changerealname",{realname:playername,nickname:playernickname});
+        const response2 = await axios.post("http://localhost:5000/api/changeposition",{position:playerposition,nickname:playernickname});
+        const response3 = await axios.post("http://localhost:5000/api/changeteamname",{myteam:playerteam,nickname:playernickname});
+        showplayer();
+      }
     const deleteplayer = async() =>{  //선수 삭제 함수
         const response = await axios.delete("http://localhost:5000/api/playerdelete",{params:{nickname:deletenickname}});
         console.log(response)
@@ -276,6 +281,49 @@ const Playerinf = () => {
           <button type='button' onClick={deletebutton}>삭제</button>
       </form>
       </div>
+      <div style={{margin : 30}}>
+            <h1 style={{color:'white'}}> 선수 정보 수정</h1>
+      <form>
+              <div className="first_input" style={{color:'white'}}>
+                  <span>선수 닉네임</span>
+                  <input
+                    name="nickname"
+                    placeholder="닉네임"
+                    style = {{float :'right'},{marginBottom:10}}
+                    onChange={playernicknamechange}
+                  ></input>
+                </div>
+
+                <div className="second_input">
+                  <span>선수 이름</span>
+                    <input
+                      name="realname"
+                      placeholder="이름"
+                      style = {{float :'right'},{marginBottom:10}}
+                      onChange={playernamechange}
+                    ></input>
+                </div>
+                <div className="second_input">
+                  <span>선수 포지션</span>
+                    <input
+                      name="position"
+                      placeholder="포지션"
+                      style = {{float :'right'},{marginBottom:10}}
+                      onChange={playerpositionchange}
+                    ></input>
+                </div>
+                <div className="second_input">
+                  <span>선수 소속팀</span>
+                    <input
+                      name="team"
+                      placeholder="소속팀"
+                      style = {{float :'right'},{marginBottom:10}}
+                      onChange={playerplayerteamchange}
+                    ></input>
+                </div>
+                <button type = 'button' style = {{float :'right'}} onClick = {playerchangeform} >수정</button>
+              </form>
+    </div>
       </div>
       <div style = {{margin : 30, color :'white'}}>
       <h1>선수 조회</h1>
