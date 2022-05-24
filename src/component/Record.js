@@ -8,6 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import background from '../lck.jpeg';
+import "../App.css"
+
 const Record = () => {
     const [matchid, setmatchid] = useState('');
     const [winteam, setwinteam] = useState('');
@@ -227,124 +229,112 @@ const Record = () => {
         <div style = {{display : 'flex'}}>
           <div style={{margin : 30,color:'white'}}>
             <h1> 결과 등록</h1>
-      <form>
+      <form id = 'form1'>
               <div className="first_input">
-                  <span>Match_ID</span>
+                  <label>Match_ID</label>
                   <input
                     name="match_id"
                     placeholder="매치 번호"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={matchidchange}
                   ></input>
                 </div>
 
                 <div className="second_input">
-                  <span>Win Team</span>
+                  <label>Win Team</label>
                     <input
                       name="WinTeam"
                       placeholder="이긴 팀"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={winteamchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Lose Team</span>
+                  <label>Lose Team</label>
                     <input
                       name="LoseTeam"
                       placeholder="진 팀"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={loseteamchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>MVP</span>
+                  <label>MVP</label>
                     <input
                       name="MVP"
                       placeholder="선수 이름"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={mvpchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Win Set</span>
+                  <label>Win Set</label>
                     <input
                       name="WinSet"
                       placeholder="세트 수"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={winsetchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Lose Set</span>
+                  <label>Lose Set</label>
                     <input
                       name="LoseSet"
                       placeholder="세트 수"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={losesetchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {recordform} >등록</button>
+                <button type = 'button' onClick = {recordform} >등록</button>
               </form>
     </div>
     <div style={{margin : 30,color:'white'}}>
             <h1> KDA 등록</h1>
-      <form>
+      <form id ='form2'>
               <div className="first_input">
-                  <span>Match_ID</span>
+                  <label>Match_ID</label>
                   <input
                     name="match_id"
                     placeholder="매치 번호"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={matchidchange}
                   ></input>
                 </div>
 
                 <div className="second_input">
-                  <span>Nickname</span>
+                  <label>Nickname</label>
                     <input
                       name="Nickname"
                       placeholder="Nickname"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={nicknamechange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>teamname</span>
+                  <label>teamname</label>
                     <input
                       name="teamname"
                       placeholder="teamname"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={teamchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Kill</span>
+                  <label>Kill</label>
                     <input
                       name="Kill"
                       placeholder="Kill"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={killchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Death</span>
+                  <label>Death</label>
                     <input
                       name="Death"
                       placeholder="Death"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={deathchange}
                     ></input>
                 </div>
                 <div className="second_input">
-                  <span>Assist</span>
+                  <label>Assist</label>
                     <input
                       name="Assist"
                       placeholder="Assist"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={assistchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {kdaform} >등록</button>
+                <button type = 'button' onClick = {kdaform} >등록</button>
               </form>
     </div>
     {/* <div style={{margin : 30,color:'white'}}>
@@ -383,23 +373,22 @@ const Record = () => {
     </div> */}
     <div style={{margin : 30,color:'white'}}>
             <h1> 상세 경기 결과 조회</h1>
-      <form>
+      <form id = 'form3'>
               <div className="first_input">
-                  <span>Match_ID</span>
+                  <label>Match_ID</label>
                   <input
                     name="match_id"
                     placeholder="매치 번호"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={matchidchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {searchmatchidform} >조회</button>
+                <button type = 'button' onClick = {searchmatchidform} >조회</button>
               </form>
     </div>
     </div>
 <div style = {{display:'flex'}}>
-    <h1 align ="left" style = {{color:'white',margin:10, flex :1}}>{team1}</h1>
-    <h1 align ="right" style = {{color:'white',margin:10,flex :1}}>{team2}</h1>
+    <h1 align ="left" style = {{margin:10, flex :1}}>{team1}</h1>
+    <h1 align ="right" style = {{margin:10,flex :1}}>{team2}</h1>
     </div>
     <div style = {{display : 'flex'}} >
     <TableContainer>

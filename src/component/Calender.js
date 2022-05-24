@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import background from '../lck.jpeg';
-import { color } from '@mui/system';
+import "../App.css"
 const Calender = () => {
     const [matchid, setmatchid] = useState('');
     const [matchdate, setmatchdate] = useState('');
@@ -19,7 +19,6 @@ const Calender = () => {
     const [teamcalender, setteamcalender] = useState([]);
     const [day, setday] = useState('');
     const [changeid, setchangeid] = useState();
-    const [result, setresult] = useState([]);
     const [recordlist, setrecordlist] = useState([]);
 
 
@@ -112,71 +111,74 @@ const Calender = () => {
           <div style = {{display : 'flex',color:'white'}}>
           <div style={{margin : 30}}>
             <h1> 일정 등록</h1>
+      <div id = "login_wrapper">
       <form>
-              <div className="first_input">
-                  <span>Match_ID</span>
+              <div>
+                  <label>매치 번호</label>
                   <input
                     name="match_id"
                     placeholder="매치 번호"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={matchidchange}
                   ></input>
                 </div>
 
-                <div className="second_input">
-                  <span>날짜</span>
+                <div>
+                  <label>날짜</label>
                     <input
                       name="date"
                       placeholder="2022-03-01"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={datechange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>팀 1</span>
+                <div>
+                  <label>팀 1</label>
                     <input
                       name="team1"
                       placeholder="팀 명"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={team1change}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>팀 2</span>
+                <div>
+                  <label>팀 2</label>
                     <input
                       name="team2"
                       placeholder="팀 명"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={team2change}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {calenderform} >등록</button>
+                <button type = 'button'  onClick = {calenderform} >등록</button>
               </form>
+              </div>
     </div>
     <div style = {{margin : 30}}>
         <h1>일정 수정</h1>
-        <form id='form1'>
+        <form id='form2'>
+          <div>
           <input type='text' value={changeid} onChange={idchange} placeholder = "수정하고 싶은 match_id 를 입력하세요"/>
           <input type='text' value={day} onChange={daychange} placeholder = "수정하려는 날짜를 입력하세요"/>
+          </div>
           <button type='button' onClick={btnClieck2}>수정</button>
       </form>
       </div>
     </div>
-      <h1 style={{color:'white'}}>팀 별 경기 조회</h1>
-      <form id='form'>
-        <input type='text' value={searchteamcal} onChange={teamcalchange} placeholder = "팀 이름을 입력하세요"/>
+      <h1>팀 별 경기 조회</h1>
+      <div style = {{display:'flex'}}>
+      <form id='form3'>
+        <div>
         <button type='button' onClick={btnClick}>조회</button>
+        <input type='text' value={searchteamcal} onChange={teamcalchange} placeholder = "팀 이름을 입력하세요"/>
+        </div>
       </form>
+      </div>
       <TableContainer component={Paper}>
-     
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
           <TableRow >
-            <TableCell component="th" scope="row" width="20%"align="center" >Match_day</TableCell>
-            <TableCell align="right" >team1</TableCell>
-            <TableCell align="right" ></TableCell>
-            <TableCell align="left" ></TableCell>
-            <TableCell align="left" >team2</TableCell>
+            <TableCell component="th" scope="row" width="20%"align="center">Match_day</TableCell>
+            <TableCell align="right">team1</TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="left"></TableCell>
+            <TableCell align="left">team2</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -184,11 +186,11 @@ const Calender = () => {
             <TableRow
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row" align="center" >{row.match_day.substr(0,10)}</TableCell>
-              <TableCell align="right" >{row.team1}</TableCell>
-              <TableCell align="right" ></TableCell>
-              <TableCell align="left" ></TableCell>
-              <TableCell align="left" >{row.team2}</TableCell>
+              <TableCell component="th" scope="row" align="center">{row.match_day.substr(0,10)}</TableCell>
+              <TableCell align="right">{row.team1}</TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="left"></TableCell>
+              <TableCell align="left">{row.team2}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -196,16 +198,15 @@ const Calender = () => {
   </TableContainer>
      
       
-      <h1 style={{color:'white'}}>전체 경기 일정 </h1>
+      <h1>전체 경기 일정 </h1>
       <TableContainer component={Paper}>
-
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell component="th" scope="row" width="20%"align="center" >Match_day</TableCell>
-            <TableCell align="right" >team1</TableCell>
-            <TableCell align="right" ></TableCell>
-            <TableCell align="left" ></TableCell>
+            <TableCell component="th" scope="row" width="20%"align="center">Match_day</TableCell>
+            <TableCell align="right">team1</TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="left"></TableCell>
             <TableCell align="left">team2</TableCell>
           </TableRow>
         </TableHead>
@@ -215,9 +216,9 @@ const Calender = () => {
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="row" align="center">{row.match_day.substr(0,10)}</TableCell>
-              <TableCell align="right" >{row.winteam}</TableCell>
+              <TableCell align="right">{row.winteam}</TableCell>
               <TableCell align="right">{row.winteam_winset}</TableCell>
-              <TableCell align="left" >{row.winteam_loseset}</TableCell>
+              <TableCell align="left">{row.winteam_loseset}</TableCell>
               <TableCell align="left">{row.loseteam}</TableCell>
             </TableRow>
           ))}
@@ -226,10 +227,10 @@ const Calender = () => {
               key={row.match_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="row" align="center">{row.match_day.substr(0,10)}</TableCell>
-              <TableCell align="right" >{row.team1}</TableCell>
-              <TableCell align="right" ></TableCell>
-              <TableCell align="left" ></TableCell>
-              <TableCell align="left" >{row.team2}</TableCell>
+              <TableCell align="right">{row.team1}</TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="left"></TableCell>
+              <TableCell align="left">{row.team2}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -41,3 +41,38 @@ body{
   background-image: "./lck.jpeg";
   background-size: cover;
 }
+#login_wrapper {  
+  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+} 
+h1{
+	font-size: 25px;
+	padding-bottom: 20px;
+  color:white;
+}
+.form{
+	width: 300px;
+}
+.form > div{
+	display: flex;
+	justify-content: center;
+	padding-bottom: 7px;
+	align-items: center;
+}
+label{
+	flex: 1;
+  font-size: 30px;
+	text-align: left;
+}
+
+input {
+	padding: 5px;
+  float: right;
+}
+button{
+	width: 85px;
+	float: right;
+	padding: 3px;
+}
