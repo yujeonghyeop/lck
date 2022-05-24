@@ -7,7 +7,9 @@ project execution period : 2022-04-25 ~
 
 
 ## Work Flow Chart
+<img width="535" alt="업무흐름도1" src="https://user-images.githubusercontent.com/43203911/170084228-10567fe4-60f9-43a2-bc9f-267ce09761fb.png">
 
+<img width="524" alt="업무흐름도2" src="https://user-images.githubusercontent.com/43203911/170084251-77992c9f-c408-41bf-ab18-d2c5716cd27f.png">
 ## List
 1. Calender
 일정을 등록, 수정, 삭제할 수 있는 페이지이다. 일정이 변화하는 것을 보기 위해 전체 일정을 한 눈에 볼 수 있게 Table 형식으로 보여준다.
