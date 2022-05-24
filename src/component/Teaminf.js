@@ -102,8 +102,8 @@ function Teaminf() {
       <div style = {{display : 'flex'}}>
       <div style = {{margin : 30, color :'white'}}>
       <h1> 팀 등록</h1>
-      <form>
-              <div className="first_input">
+      <form id='form0'>
+              <div>
                   <span>팀 이름   </span>
                   <input
                     type="text"
@@ -114,7 +114,7 @@ function Teaminf() {
                   ></input>
                 </div>
 
-                <div className="second_input">
+                <div>
                   <span>감독 이름</span>
                     <input
                       name="coach"
@@ -130,18 +130,20 @@ function Teaminf() {
     <div style = {{margin : 30, color :'white'}}>
         <h1>팀 삭제</h1>
         <form id='form1'>
-          <input type='text' value={deleteid} onChange={appChange1} placeholder = "팀 이름을 입력하세요"/>
           <button type='button' onClick={btnClick3}>삭제</button>
+          <input type='text' value={deleteid} onChange={appChange1} placeholder = "팀 이름을 입력하세요"/>
       </form>
       </div>
       </div>
     <div style = {{margin : 30, color :'white'}}>
       <h1>팀 조회</h1>
-      <form id='form'>
+      <form id='form2'>
+        <div style={{display:'flex'}}>
         <input type='text' value={myid} onChange={appChange} placeholder = "팀 이름을 입력하세요"/>
         <button type='button' onClick={btnClick2}>조회</button>
+        </div>
       </form>
-      <div >
+      <div>
         <div>
           <h3>팀 이름 : {showteamname}</h3>
           <h3>감독 : {showteamcoach}</h3>
@@ -171,7 +173,7 @@ function Teaminf() {
       </div>
       </div>
 <div style = {{margin : 30}}>
-      <h1 style ={{color:'white'}}> 팀 순위</h1>
+      <h1> 팀 순위</h1>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
