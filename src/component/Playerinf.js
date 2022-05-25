@@ -224,7 +224,6 @@ const Playerinf = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat:"no-repeat",
         backgroundSize:'cover',
-        
       }
     }
     return (
@@ -232,104 +231,98 @@ const Playerinf = () => {
         <div style={{color:'white'}}>
           <div style = {{display : 'flex'}}>
           <div style={{margin : 30}}>
-            <h1 style={{color:'white'}}> 선수 등록</h1>
-      <form>
-              <div className="first_input" style={{color:'white'}}>
-                  <span>선수 닉네임</span>
+            <h1> 선수 등록</h1>
+      <form id='form0'>
+              <div>
+                  <label>선수 닉네임</label>
                   <input
                     name="nickname"
                     placeholder="닉네임"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={playernicknamechange}
                   ></input>
                 </div>
 
-                <div className="second_input">
-                  <span>선수 이름</span>
+                <div>
+                  <label>선수 이름</label>
                     <input
                       name="realname"
                       placeholder="이름"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playernamechange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>선수 포지션</span>
+                <div>
+                  <label>선수 포지션</label>
                     <input
                       name="position"
                       placeholder="포지션"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playerpositionchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>선수 소속팀</span>
+                <div>
+                  <label>선수 소속팀</label>
                     <input
                       name="team"
                       placeholder="소속팀"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playerplayerteamchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'right'}} onClick = {playerform} >등록</button>
+                <button type = 'button' onClick = {playerform} >등록</button>
               </form>
     </div>
     <div style={{margin : 30}}>
         <h1>선수 삭제</h1>
         <form id='form1'>
-          <input type='text' value={deletenickname} onChange={deletechange} placeholder = "선수 이름을 입력하세요"/>
           <button type='button' onClick={deletebutton}>삭제</button>
+          <input type='text' value={deletenickname} onChange={deletechange} placeholder = "선수 이름을 입력하세요"/>
       </form>
       </div>
       <div style={{margin : 30}}>
-            <h1 style={{color:'white'}}> 선수 정보 수정</h1>
+            <h1> 선수 정보 수정</h1>
       <form>
-              <div className="first_input" style={{color:'white'}}>
-                  <span>선수 닉네임</span>
+              <div>
+                  <label>선수 닉네임</label>
                   <input
                     name="nickname"
                     placeholder="닉네임"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={playernicknamechange}
                   ></input>
                 </div>
 
-                <div className="second_input">
-                  <span>선수 이름</span>
+                <div>
+                  <label>선수 이름</label>
                     <input
                       name="realname"
                       placeholder="이름"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playernamechange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>선수 포지션</span>
+                <div>
+                  <label>선수 포지션</label>
                     <input
                       name="position"
                       placeholder="포지션"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playerpositionchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>선수 소속팀</span>
+                <div>
+                  <label>선수 소속팀</label>
                     <input
                       name="team"
                       placeholder="소속팀"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={playerplayerteamchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'right'}} onClick = {playerchangeform} >수정</button>
+                <button type = 'button' onClick = {playerchangeform} >수정</button>
               </form>
     </div>
       </div>
       <div style = {{margin : 30, color :'white'}}>
       <h1>선수 조회</h1>
-      <form id='form'>
+      <form id='form2'>
+      <div style={{display:'flex'}}>
         <input type='text' value={oneplayernickname} onChange={oneplayernicknamechange} placeholder = "선수 닉네임을 입력하세요"/>
         <button type='button' onClick={showoneplayer}>조회</button>
+        </div>
       </form>
       <div >
       <TableContainer component={Paper}>
@@ -404,8 +397,6 @@ const Playerinf = () => {
               <TableCell align="center">{row.game_cnt}</TableCell>
               <TableCell align="center" >{row.mvp_cnt}</TableCell>
               <TableCell align="center" >{(String((row.kills + row.assists) /row.deaths)).substr(0,3)}</TableCell>
-
-
             </TableRow>
           ))}
         </TableBody>

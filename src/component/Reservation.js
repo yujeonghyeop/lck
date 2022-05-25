@@ -45,7 +45,6 @@ const Reservation = () => {
       const payoptionchange = (e) =>{
         setpayoption(e.target.value);
       }
-
       const userform = (e) =>{
         e.preventDefault();
         createuser()
@@ -78,7 +77,6 @@ const Reservation = () => {
       }
       const userdelete = async() => {
         const response = await axios.delete("http://localhost:5000/api/userdelete",{params:{user_id:userid}});
-
       }
       const createticket = async() => {
         const response = await axios.post("http://localhost:5000/api/createticket",{user_id:userid, match_id:matchid,seat_grade:seat, pay_method:paymethod,pay_option:payoption });
@@ -106,7 +104,6 @@ const Reservation = () => {
       const ticketdelete = async() => {
         const response = await axios.delete("http://localhost:5000/api/ticketdelete",{params:{user_id:userid, match_id:matchid}});
         const response1 = await axios.post("http://localhost:5000/api/ticketminus",{user_id:userid});
-
       }
       const styled ={
         back:{
@@ -121,72 +118,68 @@ const Reservation = () => {
           <div style={{margin : 30,color:'white'}}>
             <h1>회원 가입</h1>
       <form>
-              <div className="first_input">
-                  <span>ID</span>
+              <div>
+                  <label>ID</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
-                <div className="second_input">
-                  <span>PW</span>
+                <div>
+                  <label>PW</label>
                     <input
                       name="user_passwd"
                       placeholder="Password"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={userpwchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>Name</span>
+                <div>
+                  <label>Name</label>
                     <input
                       name="user_name"
                       placeholder="name"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={usernamechange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>Phonenumber</span>
+                <div>
+                  <label>Phonenumber</label>
                     <input
                       name="phonenumber"
                       placeholder="phonenumber"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={phonenumchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {userform} >등록</button>
-              </form>
-              
+                <button type = 'button' onClick = {userform} >등록</button>
+              </form> 
     </div>
+    
     <div style={{margin : 30,color:'white'}}>
             <h1>회원 조회</h1>
       <form>
-              <div className="first_input">
-                  <span>ID</span>
+              <div>
+                  <label>ID</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {usershow} >조회</button>
+                <button type = 'button' onClick = {usershow} >조회</button>
               </form>
+              </div>
+    <div style={{margin : 30,color:'white'}}>
               <h1>회원 삭제</h1>
       <form>
-              <div className="first_input">
-                  <span>ID</span>
+              <div>
+                  <label>ID</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {userdelete} >삭제</button>
+                <button type = 'button' onClick = {userdelete} >삭제</button>
               </form>
     </div>
     <div>
@@ -225,99 +218,90 @@ const Reservation = () => {
           <div style={{margin : 30,color:'white'}}>
             <h1>티켓 예약</h1>
       <form>
-              <div className="first_input">
-                  <span>User_id</span>
+              <div>
+                  <label>User_id</label>
                   <input
                     name="user_id"
                     placeholder="User ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
-                <div className="second_input">
-                  <span>Match_id</span>
+                <div>
+                  <label>Match_id</label>
                     <input
                       name="Match_id"
                       placeholder="Match_id"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={mathidchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>좌석</span>
+                <div>
+                  <label>좌석</label>
                     <input
                       name="seat_grade"
                       placeholder="A or S"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={seatchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>결제 방식</span>
+                <div>
+                  <label>결제 방식</label>
                     <input
                       name="pay_method"
                       placeholder="card or cash"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={paymethodchange}
                     ></input>
                 </div>
-                <div className="second_input">
-                  <span>티켓 수령 방식</span>
+                <div>
+                  <label>티켓 수령 방식</label>
                     <input
                       name="pay_option"
                       placeholder="online or offline"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={payoptionchange}
                     ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {ticketform} >등록</button>
+                <button type = 'button' onClick = {ticketform} >등록</button>
               </form>
               
     </div>
     <div style={{margin : 30,color:'white'}}>
             <h1>티켓 조회</h1>
       <form>
-              <div className="first_input">
-                  <span>User_id</span>
+              <div>
+                  <label>User_id</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
                 <div className="first_input">
-                  <span>Match_id</span>
+                  <label>Match_id</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={mathidchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {ticketshow} >조회</button>
+                <button type = 'button' onClick = {ticketshow} >조회</button>
               </form>
-              <h1>예매 취소</h1>
+              <h1 style = {{marginTop:30}}>예매 취소</h1>
       <form>
-              <div className="first_input">
-                  <span>User_id</span>
+              <div>
+                  <label>User_id</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={useridchange}
                   ></input>
                 </div>
-                <div className="first_input">
-                  <span>Match_id</span>
+                <div>
+                  <label>Match_id</label>
                   <input
                     name="user_id"
                     placeholder="ID"
-                    style = {{float :'right'},{marginBottom:10}}
                     onChange={mathidchange}
                   ></input>
                 </div>
-                <button type = 'button' style = {{float :'center'}} onClick = {ticketdelete} >삭제</button>
+                <button type = 'button' onClick = {ticketdelete} >삭제</button>
               </form>
     </div><div>
     <TableContainer component={Paper}  >
@@ -329,7 +313,6 @@ const Reservation = () => {
             <TableCell align="center">Seat_grade</TableCell>
             <TableCell align="center">Pay_method</TableCell>
             <TableCell align="center">Pay_option</TableCell>
-
           </TableRow>
         </TableHead>
         <TableBody>

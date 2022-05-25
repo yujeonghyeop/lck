@@ -9,7 +9,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import background from '../lck.jpeg';
 
-import { Alert } from '@mui/material';
 function Teaminf() {
   let i = 0
   const [myid, setmyId] = useState('');
@@ -47,7 +46,6 @@ function Teaminf() {
   }
   const deleteteam = async() => {  // 팀 정보 삭제 함수
     const response = await axios.delete("http://localhost:5000/api/deleteteam", {params:{id:deleteid}});
-    console.log(response)
     showtable()
   }
   const sendRequest = async() => {  // 팀 정보 조회 함수
@@ -60,16 +58,11 @@ function Teaminf() {
       win : rowData.win,
       lose : rowData.lose,
     }))
-    if (teaminformation.length === 0){
-      alert("선수를 등록해 주세요!")
-    }
-    else {
     setTeaminfor(teaminformation);
     setshowteamname(teaminformation[0].teamname)
     setshowteamcoach(teaminformation[0].coach)
     setshowwin(teaminformation[0].win)
     setshowlose(teaminformation[0].lose)
-  }
   }
   const showtable = async() =>{ //팀 순위 정리 함수
     const response = await axios.get("http://localhost:5000/api/teamrecord");
@@ -104,22 +97,19 @@ function Teaminf() {
       <h1> 팀 등록</h1>
       <form id='form0'>
               <div>
-                  <span>팀 이름   </span>
+                  <label>팀 이름</label>
                   <input
                     type="text"
                     name="teamname"
-                    style = {{float :'right'},{marginBottom:10}}
                     placeholder="팀 이름"
                     onChange={teamChange}
                   ></input>
                 </div>
-
                 <div>
-                  <span>감독 이름</span>
+                  <label>감독 이름</label>
                     <input
                       name="coach"
                       placeholder="감독"
-                      style = {{float :'right'},{marginBottom:10}}
                       onChange={coachChange}
                     ></input>
                 </div>
@@ -127,7 +117,7 @@ function Teaminf() {
               </form>
     
     </div>
-    <div style = {{margin : 30, color :'white'}}>
+    <div style = {{margin : 30}}>
         <h1>팀 삭제</h1>
         <form id='form1'>
           <button type='button' onClick={btnClick3}>삭제</button>
