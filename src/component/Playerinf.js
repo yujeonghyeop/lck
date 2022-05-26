@@ -14,7 +14,6 @@ const Playerinf = () => {
     const [playername, setplayername] = useState('');
     const [playerposition, setplayerposition] = useState('');
     const [playerteam, setplayerteam] = useState('');
-    const [error, setError] = useState(0);
     const [deletenickname, setDeletenickname] = useState('');
     const [playerlist, setplayerlist] = useState([])
     const [oneplayer, setoneplayer] = useState([]);
@@ -186,7 +185,6 @@ const Playerinf = () => {
     }
     const createplayer = async() => {   //선수 등록 함수
         const response = await axios.post("http://localhost:5000/api/playercreate",{nickname:playernickname, realname:playername,position:playerposition, myteam:playerteam});
-        setError(response.headers['content-length'])
         showplayer();
       }
       const changeplayer = async() => {   //선수 등록 함수
@@ -198,7 +196,6 @@ const Playerinf = () => {
       }
     const deleteplayer = async() =>{  //선수 삭제 함수
         const response = await axios.delete("http://localhost:5000/api/playerdelete",{params:{nickname:deletenickname}});
-        console.log(response)
         showplayer();
     }
     const showplayer = async() =>{ //선수 리스트 보여주는 함수
